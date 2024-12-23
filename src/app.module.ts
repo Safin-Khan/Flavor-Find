@@ -14,6 +14,9 @@ import { ReservationsModule } from './reservations/reservations.module';
 import { Reservation } from './reservations/reservation.entity';
 import { OffersModule } from './offers/offers.module';
 import { Offer } from './offers/offer.entity';
+import { Contact } from './contact/contact.entity';
+import { ContactsModule } from './contact/contacts.module';
+import { MailerService } from './mailer/Provider/mailer.service';
 
 @Module({
   imports: [UsersModule, TypeOrmModule.forRoot(
@@ -24,7 +27,7 @@ import { Offer } from './offers/offer.entity';
       username: 'postgres',
       password: 'root',
       database: 'flavor-find',
-      entities: [User, Restaurant, FoodItem, Review, Reservation, Offer],
+      entities: [User, Restaurant, FoodItem, Review, Reservation, Offer,Contact],
       synchronize: true,
     }
   ),
@@ -33,11 +36,12 @@ import { Offer } from './offers/offer.entity';
     FoodItemsModule,
     ReviewsModule,
     ReservationsModule,
-    OffersModule
+    OffersModule,
+    ContactsModule
     
 ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService,MailerService],
 })
 export class AppModule {}
 
